@@ -5,14 +5,29 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 </head>
 <body>
-	<div id="sendChat">
+	<div id="username">
+		<input type="text" name="usernameTxt" /> <input type="button" name="setUsername" value="Set Username" />
+	</div>
+	<div id="sendChat" style="display:none;">
 		<input type="text" name="chatTxt" /> <input type="button" name="sendBtn" value="Send" />
 	</div>
 	<br />
     <div id="content"></div>
     <script>    
         $(document).ready(function() {
-	
+			var username = "anonymous";
+			
+			$('input[name=setUsername]').click(function(){
+				if($('input[name=usernameTxt]').val() != ""){
+					username = $('input[name=usernameTxt]').val();
+					var msg = {type:'setUsername',user:username};
+					socket.json.send(msg);
+				}
+				$('#username').slideUp("slow",function(){
+					$('#sendChat').slideDown("slow");
+				});
+			});
+			
             var socket = new io.connect('http://localhost');
             var content = $('#content');
 
@@ -21,7 +36,7 @@
             });
 
             socket.on('message', function(message){
-                content.prepend(message + '<br />');
+                content.append(message + '<br />');
             }) ;
 
             socket.on('disconnect', function() {
@@ -30,10 +45,10 @@
             });
 
 			$("input[name=sendBtn]").click(function(){
-				socket.send($("input[name=chatTxt]").val());
+				var msg = {type:'chat',message:username + " : " +  $("input[name=chatTxt]").val()}
+				socket.json.send(msg);
 				$("input[name=chatTxt]").val("");
 			});
-
         });
     </script>
 </body>
