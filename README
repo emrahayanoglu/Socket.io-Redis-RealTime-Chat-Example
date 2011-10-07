@@ -1,1 +1,19 @@
 Socket.io Redis Real Time Chat Example
+
+NPM Requirements:
+
+Socket.io
+Redis
+
+Installation:
+
+install redis
+install node.js from nodejs.org
+install npm
+npm install socket.io
+npm install redis
+
+run:
+node chatServer.js
+
+and open your browser and navigate http://localhost:5000 ... it is the simplest chat app you've ever seen!!!
