@@ -16,6 +16,6 @@ npm install redis
 run:
 node chatServer.js
 
-and open your browser and navigate http://localhost:5000 ... 
+and open your browser and navigate http://localhost:5000
 
 it is the simplest chat app you've ever seen!!!
