@@ -7,7 +7,7 @@ io.configure(function () {
   io.set("polling duration", 10); 
 });
 
-app.listen(80);
+app.listen(8000);
 
 function handler (req, res) {
   fs.readFile(__dirname + '/index.html',
