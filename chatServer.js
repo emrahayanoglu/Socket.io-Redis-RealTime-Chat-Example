@@ -31,21 +31,23 @@ if (process.env.REDISTOGO_URL) {
 
 	redis.auth(rtg.auth.split(":")[1]);
 } else {
-  var redis = require("redis").createClient();
+  	var redis1 = require("redis").createClient();
+	var redis2 = require("redis").createClient();
 }
 
 io.sockets.on('connection', function (client) {
 	
-	redis.subscribe("emrchat");
+	redis1.subscribe("emrchat");
 	
-    redis.on("message", function(channel, message) {
+    redis1.on("message", function(channel, message) {
         client.send(message);
     });
 
     client.on('message', function(msg) {
+		redis2.publish("emrchat",msg);
     });
 
     client.on('disconnect', function() {
-        subsClient.quit();
+        redis1.quit();
     });
 });

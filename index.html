@@ -5,9 +5,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 </head>
 <body>
+	<div id="sendChat">
+		<input type="text" name="chatTxt" /> <input type="button" name="sendBtn" value="Send" />
+	</div>
+	<br />
     <div id="content"></div>
     <script>    
         $(document).ready(function() {
+	
             var socket = new io.connect('http://localhost');
             var content = $('#content');
 
@@ -23,6 +28,11 @@
                 console.log('disconnected');
                 content.html("<b>Disconnected!</b>");
             });
+
+			$("input[name=sendBtn]").click(function(){
+				socket.send($("input[name=chatTxt]").val());
+				$("input[name=chatTxt]").val("");
+			});
 
         });
     </script>
