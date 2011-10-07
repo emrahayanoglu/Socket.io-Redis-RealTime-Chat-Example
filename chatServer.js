@@ -7,7 +7,10 @@ io.configure(function () {
   io.set("polling duration", 10); 
 });
 
-app.listen(51100);
+var port = process.env.PORT || 5000;
+console.log("Listening on " + port);
+ 
+app.listen(port);
 
 function handler (req, res) {
   fs.readFile(__dirname + '/index.html',
@@ -23,7 +26,6 @@ function handler (req, res) {
 }
 
 if (process.env.REDISTOGO_URL) {
-	// inside if statement
 	var rtg   = require("url").parse(process.env.REDISTOGO_URL);
 	var redis = require("redis").createClient(rtg.port, rtg.hostname);
 
