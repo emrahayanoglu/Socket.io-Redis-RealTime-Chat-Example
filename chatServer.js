@@ -30,7 +30,8 @@ if (process.env.REDISTOGO_URL) {
 	var redis1 = require("redis").createClient(rtg.port, rtg.hostname);
 	var redis2 = require("redis").createClient(rtg.port, rtg.hostname);
 
-	redis.auth(rtg.auth.split(":")[1]);
+	redis1.auth(rtg.auth.split(":")[1]);
+	redis2.auth(rtg.auth.split(":")[1]);
 } else {
   	var redis1 = require("redis").createClient();
 	var redis2 = require("redis").createClient();
