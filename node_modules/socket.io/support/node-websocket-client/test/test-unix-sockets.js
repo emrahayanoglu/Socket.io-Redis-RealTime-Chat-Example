@@ -3,7 +3,7 @@
 var assert = require('assert');
 var fs = require('fs');
 var path = require('path');
-var sys = require('sys');
+var sys = require('util');
 var WebSocket = require('../lib/websocket').WebSocket;
 var WebSocketServer = require('websocket-server/ws/server').Server;
 

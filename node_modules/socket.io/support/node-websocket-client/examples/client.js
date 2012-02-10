@@ -1,4 +1,4 @@
-var sys = require('sys');
+var sys = require('util');
 var WebSocket = require('../lib/websocket').WebSocket;
 
 var ws = new WebSocket('ws://localhost:8000/biff', 'borf');

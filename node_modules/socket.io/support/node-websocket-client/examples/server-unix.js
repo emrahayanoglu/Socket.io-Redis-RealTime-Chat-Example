@@ -1,4 +1,4 @@
-var sys = require('sys');
+var sys = require('util');
 var ws = require('websocket-server/ws');
 
 var srv = ws.createServer({ debug : true});

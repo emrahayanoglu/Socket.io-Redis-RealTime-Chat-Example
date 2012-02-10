@@ -1,7 +1,7 @@
 // Verify that some attributes of a WebSocket object are read-only.
 
 var assert = require('assert');
-var sys = require('sys');
+var sys = require('util');
 var WebSocket = require('../lib/websocket').WebSocket;
 var WebSocketServer = require('websocket-server/ws/server').Server;
 
